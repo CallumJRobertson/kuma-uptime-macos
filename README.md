@@ -1,5 +1,9 @@
 # KumaUptime (macOS)
 
+![macOS](https://img.shields.io/badge/platform-macOS-blue)
+![License](https://img.shields.io/github/license/CallumJRobertson/Kuma-Uptime-Manager-MacOS)
+![Release](https://img.shields.io/github/v/release/CallumJRobertson/Kuma-Uptime-Manager-MacOS)
+
 ![KumaUptime Screenshot](docs/demo.png)
 
 A lightweight **menu bar app for macOS** that lets you monitor your **[Uptime Kuma](https://github.com/louislam/uptime-kuma)** servers at a glance.
