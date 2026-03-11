@@ -1,95 +1,133 @@
-# Kuma Uptime Manager (macOS)
+# KumaUptime (macOS)
 
-A lightweight macOS menu bar app for monitoring [Uptime Kuma](https://github.com/louislam/uptime-kuma) status at a glance.
+A lightweight **menu bar app for macOS** that lets you monitor your **[Uptime Kuma](https://github.com/louislam/uptime-kuma)** servers at a glance.
 
-The app runs as an `LSUIElement` utility (menu bar only), supports both public and private server modes, and includes in-app monitor creation for private servers.
+KumaUptime runs quietly in the macOS menu bar and shows the current status of your monitors without needing to open a browser.
+
+---
+
+## Download
+
+Download the latest release:
+
+➡️ https://github.com/CallumJRobertson/KumaUptime/releases
+
+1. Download `KumaUptime.dmg`
+2. Open the DMG
+3. Drag **KumaUptime.app** into **Applications**
+4. Launch the app
+
+---
 
 ## Features
 
-- Menu bar status indicator with monitor count / down count
-- Down monitors automatically prioritized to the top (with per-monitor dismiss)
-- Quick info bar for large monitor sets (up/down/attention/avg ping)
-- Multiple dashboard styles:
+- Menu bar status indicator with monitor count and down alerts
+- Down monitors automatically prioritized to the top
+- Multiple dashboard views:
   - Compact list
   - Status cards
   - Analytics view
 - Monitor detail view with target URL and ping trend
-- Private mode authentication via API key
-- Public mode support via status-page endpoints
-- In-app HTTP monitor creation (private mode, management credentials required)
-- Local notifications for down/recovered transitions (batched)
-- Configurable polling interval (5-300 seconds)
+- In-app monitor creation (private servers)
+- Local notifications for monitor down / recovery
+- Configurable polling interval (5–300 seconds)
 - Optional Wi-Fi-only refresh mode
 - Optional Launch at Login
 
+---
+
 ## Requirements
 
-- macOS 14.6+
-- Xcode 16+ (full Xcode app, not Command Line Tools only)
-- An Uptime Kuma server (public or private)
+- **macOS 14.6 or newer**
+- A running **[Uptime Kuma](https://github.com/louislam/uptime-kuma)** server
 
-## Setup (User)
+KumaUptime works with both **private servers** and **public status pages**.
 
-1. Launch the app.
-2. Open `Settings`.
-3. Choose connection mode:
-   - `Private`: recommended for full functionality.
-   - `Public`: uses status-page API endpoints.
-4. Enter your `Host` URL.
-5. For `Private` mode:
-   - Add `Metrics API Key` (from `/settings/api-keys` in Uptime Kuma).
-   - (Optional) Add `Mgmt User` + `Mgmt Password` to enable in-app Add Monitor.
-6. Click `Save & Connect`.
+---
 
-## Private vs Public mode
+## Connecting to your server
 
-### Private mode
+Open **Settings** inside the app and choose your connection mode.
 
-- Polls `/metrics` using API key auth.
-- Supports in-app monitor creation through Uptime Kuma socket API.
-- Does not require status page slug.
+### Private Mode (recommended)
 
-### Public mode
+Provides full functionality.
 
-- Uses status-page APIs.
-- Optional status page slug field for non-default pages.
-- No authenticated management actions.
+Required fields:
 
-## Add Monitor (In-App)
+- Host URL
+- **Metrics API Key** (from `/settings/api-keys` in **[Uptime Kuma](https://github.com/louislam/uptime-kuma)**)
 
-In the menu popover:
+Optional:
 
-1. Click the `+` button.
-2. Enter monitor name, target URL, and interval.
-3. Click `Create`.
+- Management username/password  
+  Enables **in-app monitor creation**.
 
-Prerequisites:
+---
 
-- Private mode is configured
-- Management username/password are saved in Settings
+### Public Mode
+
+Uses status page APIs provided by **[Uptime Kuma](https://github.com/louislam/uptime-kuma)**.
+
+Required:
+
+- Host URL
+
+Optional:
+
+- Status page slug
+
+Public mode does **not allow authenticated actions**.
+
+---
+
+## Creating monitors from the app
+
+When using **Private Mode**, you can create monitors directly.
+
+1. Open the menu bar popover
+2. Click the **+** button
+3. Enter monitor name and target URL
+4. Click **Create**
+
+Currently supported monitor type:
+
+- HTTP
+
+---
 
 ## Notifications
 
-- The app requests notification permission on first run.
-- Down and recovered events are grouped into a single notification when multiple changes occur.
+The app can send macOS notifications when:
 
-## Data and Security
+- A monitor goes **down**
+- A monitor **recovers**
 
-- API key and management credentials are stored in macOS Keychain.
-- Non-sensitive settings (host, UI preferences, poll interval, etc.) are stored in `UserDefaults`.
-- The app does not log raw secret payloads from auth frames.
+Multiple events are grouped into a single notification to avoid spam.
 
-See [SECURITY.md](SECURITY.md) for details.
+---
+
+## Data & Security
+
+Sensitive information is stored securely.
+
+- API keys and credentials are stored in **macOS Keychain**
+- UI settings are stored in **UserDefaults**
+- Secret authentication payloads are never logged
+
+See **SECURITY.md** for more details.
+
+---
 
 ## Development
 
-1. Open `UptimeKuma Mac.xcodeproj` in Xcode.
-2. Update signing/team settings if needed.
-3. Build and run the `UptimeKuma Mac` target.
+To build the app locally:
 
-### Useful checks
+1. Open `UptimeKuma Mac.xcodeproj` in **Xcode 16+**
+2. Configure signing settings
+3. Run the **UptimeKuma Mac** target
 
-- Swift typecheck (CLI):
+### Swift typecheck example
 
 ```bash
 SDK=$(xcrun --show-sdk-path --sdk macosx)
@@ -99,13 +137,3 @@ xcrun swiftc -typecheck -sdk "$SDK" -target arm64-apple-macos14.0 \
   "UptimeKuma Mac/ContentView.swift" \
   "UptimeKuma Mac/UptimeKuma_MacApp.swift" \
   "UptimeKuma Mac/WebLoginSheet.swift"
-```
-
-## Known limitations
-
-- Browser/session login flow is intentionally disabled in this build for stability.
-- In-app monitor creation currently targets HTTP monitor type only.
-
-## Contributing
-
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
