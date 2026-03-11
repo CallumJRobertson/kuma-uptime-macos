@@ -1,5 +1,7 @@
 # KumaUptime (macOS)
 
+![KumaUptime Screenshot](docs/demo.png)
+
 A lightweight **menu bar app for macOS** that lets you monitor your **[Uptime Kuma](https://github.com/louislam/uptime-kuma)** servers at a glance.
 
 KumaUptime runs quietly in the macOS menu bar and shows the current status of your monitors without needing to open a browser.
