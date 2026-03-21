@@ -3,7 +3,12 @@
 ![macOS](https://img.shields.io/badge/platform-macOS-blue)
 ![License](https://img.shields.io/github/license/CallumJRobertson/Kuma-Uptime-Manager-MacOS)
 ![Release](https://img.shields.io/github/v/release/CallumJRobertson/Kuma-Uptime-Manager-MacOS)
-[![TestFlight](https://img.shields.io/badge/TestFlight-Join%20Beta-blue?logo=apple)](https://testflight.apple.com/join/nkb1cEgN)
+
+<p align="center">
+  <a href="https://apps.apple.com/gb/app/kuma-uptime-manager/id6760319527?mt=12">
+    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" height="60">
+  </a>
+</p>
 
 ![KumaUptime Screenshot](docs/demo.png)
 
@@ -15,7 +20,15 @@ KumaUptime runs quietly in the macOS menu bar and shows the current status of yo
 
 ## Download
 
-Download the latest release:
+### 🖥 App Store
+
+Download directly from the Mac App Store:
+
+➡️ https://apps.apple.com/gb/app/kuma-uptime-manager/id6760319527?mt=12
+
+---
+
+### 📦 Manual Install (DMG)
 
 ➡️ https://github.com/CallumJRobertson/KumaUptime/releases
 
@@ -23,25 +36,6 @@ Download the latest release:
 2. Open the DMG
 3. Drag **KumaUptime.app** into **Applications**
 4. Launch the app
-
----
-
-## TestFlight Beta
-
-You can also test the **latest beta version** through Apple TestFlight.
-
-This version may contain **new features and fixes before the public release**.
-
-➡️ **Join the TestFlight beta:**
-
-https://testflight.apple.com/join/nkb1cEgN
-
-Steps:
-
-1. Install **TestFlight** from the Mac App Store
-2. Open the TestFlight link above
-3. Click **Accept**
-4. Install **KumaUptime**
 
 ---
 
@@ -82,7 +76,7 @@ Provides full functionality.
 Required fields:
 
 - Host URL
-- **Metrics API Key** (from `/settings/api-keys` in **[Uptime Kuma](https://github.com/louislam/uptime-kuma)**)
+- **Metrics API Key** (from `/settings/api-keys` in **Uptime Kuma**)
 
 Optional:
 
@@ -93,7 +87,7 @@ Optional:
 
 ### Public Mode
 
-Uses status page APIs provided by **[Uptime Kuma](https://github.com/louislam/uptime-kuma)**.
+Uses status page APIs provided by **Uptime Kuma**.
 
 Required:
 
